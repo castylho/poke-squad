@@ -16,7 +16,7 @@ interface PokemonCardProps {
 const renderPokemonTypeTags = () => {};
 
 const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
-  const pokemonImg = pokemon.sprites.at(0)?.front_default;
+  const pokemonImg = pokemon.sprites.front_default;
 
   return (
     <Card>

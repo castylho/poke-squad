@@ -3,6 +3,8 @@ import Search from "./components/Search";
 import Box from "@mui/material/Box";
 import { useDebounce } from "./utils/useDebounce";
 import { getPokemonURL } from "./api/constants";
+import { formatPokemonData } from "./utils/formatData";
+import { PokemonAPI } from "./api/types";
 
 function App() {
   const [searchText, setSearchText] = useState("");
@@ -14,9 +16,19 @@ function App() {
     setSearchText(value);
   };
 
+  const searchPokemon = async (searchTerm:string):Promise<PokemonAPI> => {
+    const res = await fetch(getPokemonURL(searchTerm))
+    if(!res.ok) throw Error('failed request')
+
+    return res.json()
+  }
+
   useEffect(() => {
-    console.log(`debouncedSearchValue => ${debouncedSearchValue}`);
-    // getPokemonURL(debouncedSearchValue)
+    searchPokemon(debouncedSearchValue).then((data) => {
+      console.log(formatPokemonData(data));
+      
+    })
+    
   }, [debouncedSearchValue]);
 
   return (
