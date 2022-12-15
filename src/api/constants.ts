@@ -6,7 +6,7 @@ export const getPokemonURL = (name: string): string => {
   return `${BASE_URL}/pokemon/${name}`;
 };
 
-export const PokemonType: Record<PokemonTypes, string> = {
+export const pokemonType: Record<PokemonTypes, string> = {
   fire: "#f08030",
   water: "#6790f0",
   grass: "#78c84f",
